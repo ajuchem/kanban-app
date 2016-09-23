@@ -27,7 +27,7 @@ export default class App extends React.Component {
     return (
       // React returns a single component, wrap application within a <div>
       <div>
-        <button onClick={this.addNote}>+</button>
+        <button className="add-note" onClick={this.addNote}>+</button>
         {/* Pass data through a prop to Notes */}
         <Notes notes={notes}
         onNoteClick={this.activateNoteEdit}
