@@ -29,9 +29,10 @@ export default class App extends React.Component {
       <div>
         <button onClick={this.addNote}>+</button>
         {/* Pass data through a prop to Notes */}
-        <Notes notes={notes} />
+        <Notes notes={notes}
+               onDelete={this.deleteNote} />
       </div>
-    );
+    )
   }
 
   addNote = () => {
@@ -40,6 +41,15 @@ export default class App extends React.Component {
         id: uuid.v4(),
         task: 'New task'
       }])
+    });
+  }
+
+  deleteNote = (id, e) => {
+    // Avoid bubbling to edit
+    e.stopPropagation();
+
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== id)
     });
   }
 }
