@@ -2,8 +2,9 @@
 import React from 'react';
 import uuid from 'uuid';
 import Notes from './Notes';
+import connect from '../libs/connect';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     // If you dont pass props to super, this.props wont get set
     super(props);
@@ -27,6 +28,7 @@ export default class App extends React.Component {
     return (
       // React returns a single component, wrap application within a <div>
       <div>
+        {this.props.test}
         <button className="add-note" onClick={this.addNote}>+</button>
         {/* Pass data through a prop to Notes */}
         <Notes notes={notes}
@@ -80,3 +82,7 @@ export default class App extends React.Component {
     });
   }
 }
+
+export default connect(() => ({
+  test: 'test'
+}))(App)
